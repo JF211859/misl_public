@@ -8,4 +8,3 @@ This repository mainly consists of scripts that manages psychological experiment
 
 - All results
 - Street view images and metadata
--
