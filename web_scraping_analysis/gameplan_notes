@@ -1,0 +1,35 @@
+Purpose:
+    Did police departements change the language they use in their websites after the George Floyd killing in May of 2020.
+
+Data:
+
+    A Lot overlap
+
+    Fall 2022 RA Annotations (2000):
+        Name
+        URL
+        Location
+        WayBack Data - some missing
+        Annotations - inconsistant
+
+    Department List RA Annotations (2000):
+        Name
+        URL
+        Size
+        Location
+
+    All Qualtrics URLS (315) w/ text extractions
+
+Idea 1:
+
+    Look exclusively at websites that are different now then before may 2024.  Build a model that can detect if a website is modern or pre George Floyd, and learn what the deciding factors are.
+
+        Maybe exclusive to mission statements, would be intrested in seeing research by EMU on this
+
+    WebScraper could be done with requests + beautriful soup to pull relevant information
+    CBOW to vector
+    Binary classifier afterwords
+
+
+Idea 2:
+

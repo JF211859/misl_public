@@ -1,0 +1,107 @@
+"task","trial_type","trial_index","time_elapsed","internal_node_id","subject_id","study_id","session_id","section","width","height","webaudio","browser","browser_version","mobile","os","fullscreen","vsync_rate","webcam","microphone","rt","stimulus","response","success","timeout","failed_images","failed_audio","failed_video","block","accuracy","slider_start","choices","standardized_response"
+"pavlovia-init","pavlovia","0","1116","0.0-0.0","","","","3","","","","","","","","","","","","","","","","","","","","","","","",""
+"browser-check","browser-check","1","2107","0.0-1.0","","","","3","1600","842","true","chrome","119.0.0","false","Mac OS","true","60.75","true","true","","","","","","","","","","","","",""
+"consent","html-button-response","2","7954","0.0-2.0","","","","3","","","","","","","","","","","","5846","
+        <div style=""font-size: 80%; max-width:700px"">
+            <h2>CONSENT FORM</h2>
+        
+            <div style=""text-align: left"">
+            <h4>DESCRIPTION</h4>
+            <p>
+            You will complete a short task where you give your impressions of various neighborhoods and assign individuals to those spaces, and answer some questions about your thoughts and opinions.<br>
+            The University of Michigan Institutional Review Board Health Sciences and Behavioral Sciences has determined that this study is exempt from IRB oversight.
+            </p>
+
+            <h4>TIME INVOLVEMENT</h4>
+            <p>Your participation will take approximately 15 minutes. You will receive $3.25 upon completion of the study.</p>
+        
+            <h4>RISKS AND BENEFITS</h4>
+            <p>
+            The risks associated with this study are minimal. The benefits which may reasonably be expected to result from this study are none. We cannot and do not guarantee or promise that you will receive any benefits from this study.
+            </p>
+          
+            <h4>SUBJECT'S RIGHTS</h4>
+            <p>
+            If you have read this form and have decided to participate in this project, please understand your participation is voluntary and you have the right to withdraw your consent or discontinue participation at any time without penalty or loss of benefits to which you are otherwise entitled. The alternative is not to participate. You have the right to refuse to answer particular questions. Your individual privacy will be maintained in all published and written data resulting from the study.
+            </p>
+
+            <h4>HUMAN SUBJECT APPROVAL</h4>
+            <p>
+            This study is exempt from ongoing IRB review.
+            </p>
+
+            <h4>CONTACT INFORMATION</h4>
+            If you have any questions, concerns or complaints about this research, its procedures, risks and benefits, contact the Protocol Director, Nicholas Camp, npcamp@umich.edu, (443) 851-6783. <br>
+
+            If you have questions about your rights as a research participant, or wish to obtain information, ask questions or discuss any concerns about this study with someone other than the researcher(s), please contact the following:<br><br>
+            University of Michigan<br>
+            Health Sciences and Behavioral Sciences Institutional Review Board (IRB-HSBS)<br>
+            2800 Plymouth Road<br>
+            Building 520, Room 1169Ann Arbor, MI 48109-2800<br>
+            Telephone: 734-936-0933 or toll free (866) 936-0933<br>
+            Fax: 734-936-1852<br>
+            E-mail: irbhsbs@umich.edu<br><br>
+
+            You can also contact the University of Michigan Compliance Hotline at 1-866-990-0111. You may also print this consent form to keep.
+            <br><br>
+            <div class=""alert alert-warning""><b>
+            Do you consent to participate in this study? If you consent to participate in this study, please click “Accept and Continue”. If you select ""Decline and Exit"", you will be exited from the survey. <br>
+            </b></div>
+            </div>
+        </div>
+    ","1","","","","","","","","","",""
+"","preload","3","9706","0.0-3.0","","","","3","","","","","","","","","","","","","","","true","false","[]","[]","[]","","","","",""
+"instructions","html-button-response","4","13341","0.0-4.0","","","","3","","","","","","","","","","","","3633","
+        <div class=""text-container"">
+        <h1>Welcome to the study!</h1>
+        
+        <div class=""text-left"">
+            <p>
+                In this study, we are interested in how people think about different Google Street View images. <br> Google Street View takes pictures of streets used for Google Earth and Google Maps. <br>You’ll see Google Street View images of different places and answer some questions about each one.<br>
+            </p>
+        </div>
+        <img src = ""assets/img/example.png"" width = 500px, height = auto>
+        <br>
+    <br>
+    ","0","","","","","","","","","",""
+"instructions","html-button-response","5","15690","0.0-5.0","","","","3","","","","","","","","","","","","2348","
+    <div class=""text-container"">
+        <div class=""text-center"">
+            <p>Please remember that your answers are completely anonymous. <br> (We can't trace them back to your name). <br>Please answer as honestly as you can.</p>
+        </div>
+    <br>
+","0","","","","","","","","","",""
+"before_SVSlide_prompt","html-button-response","6","17085","0.0-6.0","","","","3","","","","","","","","","","","","1394","Click [Next] to see the next neighborhood!","0","","","","","","","","","",""
+"street view slide show","image-button-response","7","18104","0.0-7.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_293/IMG_14_293.jpg","null","","","","","","4","","","",""
+"street view slide show","image-button-response","8","19106","0.0-8.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_293/IMG_1_293.jpg","null","","","","","","4","","","",""
+"street view slide show","image-button-response","9","20114","0.0-9.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_293/IMG_5_293.jpg","null","","","","","","4","","","",""
+"street view slide show","image-button-response","10","21118","0.0-10.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_293/IMG_10_293.jpg","null","","","","","","4","","","",""
+"street view slide show","image-button-response","11","22125","0.0-11.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_293/IMG_13_293.jpg","null","","","","","","4","","","",""
+"street view slide show","image-button-response","12","23131","0.0-12.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_293/IMG_7_293.jpg","null","","","","","","4","","","",""
+"street view slide show","image-button-response","13","24136","0.0-13.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_293/IMG_6_293.jpg","null","","","","","","4","","","",""
+"street view slide show","image-button-response","14","25141","0.0-14.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_293/IMG_8_293.jpg","null","","","","","","4","","","",""
+"dot matrix survey1","survey","15","39604","0.0-15.0","","","","3","","","","","","","","","","","","14410","","{""P0_Q0"":null,""P0_Q1"":{""wealthy"":1,""safe"":1,""walkable"":1,""traditional"":1,""diverse"":1}}","","","","","","4","[]","","",""
+"dot matrix survey2","survey","16","43135","0.0-16.0","","","","3","","","","","","","","","","","","3522","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","4","[]","","",""
+"dot matrix survey3","survey","17","45875","0.0-17.0","","","","3","","","","","","","","","","","","2732","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","4","[]","","",""
+"sliderTrial","html-slider-response","18","51229","0.0-18.0","","","","3","","","","","","","","","","","","5352","[""SV_PolicingMSA/NY_293/IMG_14_293.jpg"",""SV_PolicingMSA/NY_293/IMG_1_293.jpg"",""SV_PolicingMSA/NY_293/IMG_5_293.jpg"",""SV_PolicingMSA/NY_293/IMG_10_293.jpg"",""SV_PolicingMSA/NY_293/IMG_13_293.jpg"",""SV_PolicingMSA/NY_293/IMG_7_293.jpg"",""SV_PolicingMSA/NY_293/IMG_6_293.jpg"",""SV_PolicingMSA/NY_293/IMG_8_293.jpg""]","5","","","","","","4","","4","[""./rc_img/cop_condGroup_10_CommunitySafety_autoscaled.png"",""./rc_img/cop_condGroup_10_SafeStreets_autoscaled.png""]","5"
+"sliderTrial","html-slider-response","19","53674","0.0-19.0","","","","3","","","","","","","","","","","","2442","[""SV_PolicingMSA/NY_293/IMG_14_293.jpg"",""SV_PolicingMSA/NY_293/IMG_1_293.jpg"",""SV_PolicingMSA/NY_293/IMG_5_293.jpg"",""SV_PolicingMSA/NY_293/IMG_10_293.jpg"",""SV_PolicingMSA/NY_293/IMG_13_293.jpg"",""SV_PolicingMSA/NY_293/IMG_7_293.jpg"",""SV_PolicingMSA/NY_293/IMG_6_293.jpg"",""SV_PolicingMSA/NY_293/IMG_8_293.jpg""]","4","","","","","","4","","4","[""./rc_img/cop_condGroup_2_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_2_CommunitySafety_autoscaled.png""]","4"
+"sliderTrial","html-slider-response","20","54262","0.0-20.0","","","","3","","","","","","","","","","","","586","[""SV_PolicingMSA/NY_293/IMG_14_293.jpg"",""SV_PolicingMSA/NY_293/IMG_1_293.jpg"",""SV_PolicingMSA/NY_293/IMG_5_293.jpg"",""SV_PolicingMSA/NY_293/IMG_10_293.jpg"",""SV_PolicingMSA/NY_293/IMG_13_293.jpg"",""SV_PolicingMSA/NY_293/IMG_7_293.jpg"",""SV_PolicingMSA/NY_293/IMG_6_293.jpg"",""SV_PolicingMSA/NY_293/IMG_8_293.jpg""]","4","","","","","","4","","4","[""./rc_img/cop_condGroup_3_CommunitySafety_autoscaled.png"",""./rc_img/cop_condGroup_3_SafeStreets_autoscaled.png""]","4"
+"sliderTrial","html-slider-response","21","54872","0.0-21.0","","","","3","","","","","","","","","","","","607","[""SV_PolicingMSA/NY_293/IMG_14_293.jpg"",""SV_PolicingMSA/NY_293/IMG_1_293.jpg"",""SV_PolicingMSA/NY_293/IMG_5_293.jpg"",""SV_PolicingMSA/NY_293/IMG_10_293.jpg"",""SV_PolicingMSA/NY_293/IMG_13_293.jpg"",""SV_PolicingMSA/NY_293/IMG_7_293.jpg"",""SV_PolicingMSA/NY_293/IMG_6_293.jpg"",""SV_PolicingMSA/NY_293/IMG_8_293.jpg""]","4","","","","","","4","","4","[""./rc_img/cop_condGroup_20_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_20_CommunitySafety_autoscaled.png""]","4"
+"sliderTrial","html-slider-response","22","55503","0.0-22.0","","","","3","","","","","","","","","","","","628","[""SV_PolicingMSA/NY_293/IMG_14_293.jpg"",""SV_PolicingMSA/NY_293/IMG_1_293.jpg"",""SV_PolicingMSA/NY_293/IMG_5_293.jpg"",""SV_PolicingMSA/NY_293/IMG_10_293.jpg"",""SV_PolicingMSA/NY_293/IMG_13_293.jpg"",""SV_PolicingMSA/NY_293/IMG_7_293.jpg"",""SV_PolicingMSA/NY_293/IMG_6_293.jpg"",""SV_PolicingMSA/NY_293/IMG_8_293.jpg""]","4","","","","","","4","","4","[""./rc_img/cop_condGroup_6_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_6_CommunitySafety_autoscaled.png""]","4"
+"before_SVSlide_prompt","html-button-response","23","57448","0.0-23.0","","","","3","","","","","","","","","","","","1944","Click [Next] to see the next neighborhood!","0","","","","","","","","","",""
+"street view slide show","image-button-response","24","58453","0.0-24.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_4631/IMG_14_4631.jpg","null","","","","","","5","","","",""
+"street view slide show","image-button-response","25","59457","0.0-25.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_4631/IMG_2_4631.jpg","null","","","","","","5","","","",""
+"street view slide show","image-button-response","26","60459","0.0-26.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_4631/IMG_5_4631.jpg","null","","","","","","5","","","",""
+"street view slide show","image-button-response","27","61462","0.0-27.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_4631/IMG_8_4631.jpg","null","","","","","","5","","","",""
+"street view slide show","image-button-response","28","62467","0.0-28.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_4631/IMG_7_4631.jpg","null","","","","","","5","","","",""
+"street view slide show","image-button-response","29","63469","0.0-29.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_4631/IMG_13_4631.jpg","null","","","","","","5","","","",""
+"street view slide show","image-button-response","30","64474","0.0-30.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_4631/IMG_1_4631.jpg","null","","","","","","5","","","",""
+"street view slide show","image-button-response","31","65478","0.0-31.0","","","","3","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/NY_4631/IMG_6_4631.jpg","null","","","","","","5","","","",""
+"dot matrix survey1","survey","32","67967","0.0-32.0","","","","3","","","","","","","","","","","","2472","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","5","[]","","",""
+"dot matrix survey2","survey","33","68750","0.0-33.0","","","","3","","","","","","","","","","","","775","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","5","[]","","",""
+"dot matrix survey3","survey","34","70781","0.0-34.0","","","","3","","","","","","","","","","","","2023","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","5","[]","","",""
+"sliderTrial","html-slider-response","35","73704","0.0-35.0","","","","3","","","","","","","","","","","","2922","[""SV_PolicingMSA/NY_4631/IMG_14_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_2_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_5_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_8_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_7_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_13_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_1_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_6_4631.jpg""]","5","","","","","","5","","4","[""./rc_img/cop_condGroup_16_CommunitySafety_autoscaled.png"",""./rc_img/cop_condGroup_16_SafeStreets_autoscaled.png""]","5"
+"sliderTrial","html-slider-response","36","74597","0.0-36.0","","","","3","","","","","","","","","","","","891","[""SV_PolicingMSA/NY_4631/IMG_14_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_2_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_5_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_8_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_7_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_13_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_1_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_6_4631.jpg""]","4","","","","","","5","","4","[""./rc_img/cop_condGroup_7_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_7_CommunitySafety_autoscaled.png""]","4"
+"sliderTrial","html-slider-response","37","75561","0.0-37.0","","","","3","","","","","","","","","","","","962","[""SV_PolicingMSA/NY_4631/IMG_14_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_2_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_5_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_8_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_7_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_13_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_1_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_6_4631.jpg""]","4","","","","","","5","","4","[""./rc_img/cop_condGroup_15_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_15_CommunitySafety_autoscaled.png""]","4"
+"sliderTrial","html-slider-response","38","76425","0.0-38.0","","","","3","","","","","","","","","","","","861","[""SV_PolicingMSA/NY_4631/IMG_14_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_2_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_5_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_8_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_7_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_13_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_1_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_6_4631.jpg""]","4","","","","","","5","","4","[""./rc_img/cop_condGroup_11_CommunitySafety_autoscaled.png"",""./rc_img/cop_condGroup_11_SafeStreets_autoscaled.png""]","4"
+"sliderTrial","html-slider-response","39","77510","0.0-39.0","","","","3","","","","","","","","","","","","1082","[""SV_PolicingMSA/NY_4631/IMG_14_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_2_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_5_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_8_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_7_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_13_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_1_4631.jpg"",""SV_PolicingMSA/NY_4631/IMG_6_4631.jpg""]","4","","","","","","5","","4","[""./rc_img/cop_condGroup_17_CommunitySafety_autoscaled.png"",""./rc_img/cop_condGroup_17_SafeStreets_autoscaled.png""]","4"

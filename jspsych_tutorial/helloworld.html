@@ -1,0 +1,105 @@
+<!--
+
+    Welcome to your first html document.  HTML documents are made of many parts, however
+    we are only concerned with two places.  The first is the head section, this is where
+    we will import other files that can be used later.  The second is the script section.
+    The script section is where we will create the experiment and tell JsPsych how to run it.
+
+-->
+
+<!DOCTYPE html> <!-- What kind of document we are working in (Don't change this) -->
+<html lang="en"> <!-- What language the document is in (english) (Don't change this) -->
+
+<head>
+    <title>Hello World!</title> <!-- The title of the page to be displayed in the tab -->
+    <meta charset="UTF-8">  <!-- What characters we are working in (Don't change this)-->
+
+
+    <!--
+        Links with the attribute rel="stylesheet" tell the webpage how to style the experiment
+        here we are using the standard css file that jsPsych provides
+    -->
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.0.0/css/jspsych.css">
+
+    <!--
+        Script tags let us import code from other files or even over the internet.  In this
+        example we are pulling the base jsPsych from a website called unpkg.com.
+    -->
+    <script src="https://unpkg.com/jspsych@7.2.3"></script>
+
+    <!--
+        Along with the base jsPsych we need to import all the plugins that we want to use.
+        We will cover plugins more down the line, but plugins are templates, that make
+        up the experiment when provided with data.
+
+        Here we are importing the html-button-response plugin.
+    -->
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+
+
+
+</head>
+
+<!--
+    All html files are required to have a body.  In most webpages this is where the majority of the
+    information for the webpage is found, however we will be using JsPsych to create the webpages
+    so we leave this blank.
+-->
+<body></body>
+
+<!-- Inside script is where we will write all the code that creates the website-->
+<script>
+
+    // Anything written inside the script tag is read as javascript and not as an html document.
+
+    // The first step in creating a JsPsych experiment is to initialize JsPsych.
+
+    var jsPsych = initJsPsych({});
+
+    // JsPsych works by creating a timeline, comprised of webpages made from jsPsych plugins,
+    // and telling jsPsych to run all the plugins
+
+    // The timeline array will hold all the webpages.
+
+    var timeline = [];
+
+    // We will create our first webpage using the html-button-response plugin that we imported in the
+    // header section of the file.
+
+    // There are many different ways that you can customize these plugins, the best way to
+    // learn all the different attributes that can be customized is by going to the documentation
+    // on the JsPsych website (https://www.jspsych.org/7.0/).  For example all the options that
+    // can be given to html button response can be found here
+    // (https://www.jspsych.org/7.0/plugins/html-button-response/).
+
+    // Here we create a jsPsychHtmlButtonResponse plugin, and pass in two pieces of data, the
+    // stimulus that is show, and the choices that are presented.
+
+    var helloWorld = {
+        type : jsPsychHtmlButtonResponse,
+        stimulus: "Hello World?",
+        choices: ["Yes, Hello World!", "No, Goodbye World!"]
+    };
+
+    // Once we have a plugin created that we have customized, we need to add it to the timeline.
+
+    timeline.push(helloWorld);
+
+    // Once the timeline is created we just tell JsPsych to run it!
+
+    jsPsych.run(timeline);
+
+    // To run this experiment ensure that live server is installed.
+    // 1. press "Go Live" in the bottom right.
+    // 2. Open a web browser and go to (http://localhost:5500/)
+    // 3. Select helloworld.html
+
+</script>
+
+
+</html>
+
+<!--
+    Congratulations! You have created your first jsPsych experiment.  Continue on to pavlovia.html
+    to learn how to incorporate pavlovia into the workflow.
+-->

@@ -1,0 +1,142 @@
+"task","trial_type","trial_index","time_elapsed","internal_node_id","subject_id","study_id","session_id","section","width","height","webaudio","browser","browser_version","mobile","os","fullscreen","vsync_rate","webcam","microphone","rt","stimulus","response","success","timeout","failed_images","failed_audio","failed_video","block","accuracy","slider_start","choices","correct","standardized_response"
+"pavlovia-init","pavlovia","0","941","0.0-0.0","","","","1","","","","","","","","","","","","","","","","","","","","","","","","",""
+"browser-check","browser-check","1","1936","0.0-1.0","","","","1","1600","842","true","chrome","119.0.0","false","Mac OS","true","60.77","true","true","","","","","","","","","","","","","",""
+"consent","html-button-response","2","4867","0.0-2.0","","","","1","","","","","","","","","","","","2928","
+        <div style=""font-size: 80%; max-width:700px"">
+            <h2>CONSENT FORM</h2>
+        
+            <div style=""text-align: left"">
+            <h4>DESCRIPTION</h4>
+            <p>
+            You will complete a short task where you give your impressions of various neighborhoods and assign individuals to those spaces, and answer some questions about your thoughts and opinions.<br>
+            The University of Michigan Institutional Review Board Health Sciences and Behavioral Sciences has determined that this study is exempt from IRB oversight.
+            </p>
+
+            <h4>TIME INVOLVEMENT</h4>
+            <p>Your participation will take approximately 15 minutes. You will receive $3.15 upon completion of the study.</p>
+        
+            <h4>RISKS AND BENEFITS</h4>
+            <p>
+            The risks associated with this study are minimal. The benefits which may reasonably be expected to result from this study are none. We cannot and do not guarantee or promise that you will receive any benefits from this study.
+            </p>
+          
+            <h4>SUBJECT'S RIGHTS</h4>
+            <p>
+            If you have read this form and have decided to participate in this project, please understand your participation is voluntary and you have the right to withdraw your consent or discontinue participation at any time without penalty or loss of benefits to which you are otherwise entitled. The alternative is not to participate. You have the right to refuse to answer particular questions. Your individual privacy will be maintained in all published and written data resulting from the study.
+            </p>
+
+            <h4>HUMAN SUBJECT APPROVAL</h4>
+            <p>
+            This study is exempt from ongoing IRB review.
+            </p>
+
+            <h4>CONTACT INFORMATION</h4>
+            If you have any questions, concerns or complaints about this research, its procedures, risks and benefits, contact the Protocol Director, Nicholas Camp, npcamp@umich.edu, (443) 851-6783. <br>
+
+            If you have questions about your rights as a research participant, or wish to obtain information, ask questions or discuss any concerns about this study with someone other than the researcher(s), please contact the following:<br><br>
+            University of Michigan<br>
+            Health Sciences and Behavioral Sciences Institutional Review Board (IRB-HSBS)<br>
+            2800 Plymouth Road<br>
+            Building 520, Room 1169Ann Arbor, MI 48109-2800<br>
+            Telephone: 734-936-0933 or toll free (866) 936-0933<br>
+            Fax: 734-936-1852<br>
+            E-mail: irbhsbs@umich.edu<br><br>
+
+            You can also contact the University of Michigan Compliance Hotline at 1-866-990-0111. You may also print this consent form to keep.
+            <br><br>
+            <div class=""alert alert-warning""><b>
+            Do you consent to participate in this study? If you consent to participate in this study, please click “Accept and Continue”. If you select ""Decline and Exit"", you will be exited from the survey. <br>
+            </b></div>
+            </div>
+        </div>
+    ","1","","","","","","","","","","",""
+"","preload","3","6580","0.0-3.0","","","","1","","","","","","","","","","","","","","","true","false","[]","[]","[]","","","","","",""
+"instructions","html-button-response","4","11440","0.0-4.0","","","","1","","","","","","","","","","","","4859","
+        <div class=""text-container"">
+        <h1>Welcome to the study!</h1>
+        
+        <div class=""text-left"">
+            <p>
+                In this study, we are interested in what people can tell about spaces from Google Street View images. <br> Google Street View takes pictures of streets used for Google Earth and Google Maps. <br>You’ll see Google Street View images of different places and answer some questions about each one.<br>
+            </p>
+        </div>
+        <img src = ""assets/img/example.png"" width = 500px, height = auto>
+        <br>
+    <br>
+    ","0","","","","","","","","","","",""
+"instructions","html-button-response","5","13157","0.0-5.0","","","","1","","","","","","","","","","","","1716","
+    <div class=""text-container"">
+        <div class=""text-center"">
+            <p>Please remember that your answers are completely anonymous.<br>Go with your gut response- there are no right or wrong answers!</p>
+        </div>
+    <br>
+","0","","","","","","","","","","",""
+"before_SVSlide_prompt","html-button-response","6","14458","0.0-6.0","","","","1","","","","","","","","","","","","1300","Click [Next] to see the next neighborhood!","0","","","","","","","","","","",""
+"street view slide show","image-button-response","7","15478","0.0-7.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2534/IMG_14_2534.jpg","null","","","","","","0","","","","",""
+"street view slide show","image-button-response","8","16481","0.0-8.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2534/IMG_5_2534.jpg","null","","","","","","0","","","","",""
+"street view slide show","image-button-response","9","17489","0.0-9.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2534/IMG_1_2534.jpg","null","","","","","","0","","","","",""
+"street view slide show","image-button-response","10","18495","0.0-10.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2534/IMG_11_2534.jpg","null","","","","","","0","","","","",""
+"street view slide show","image-button-response","11","19501","0.0-11.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2534/IMG_8_2534.jpg","null","","","","","","0","","","","",""
+"street view slide show","image-button-response","12","20507","0.0-12.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2534/IMG_10_2534.jpg","null","","","","","","0","","","","",""
+"street view slide show","image-button-response","13","21515","0.0-13.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2534/IMG_4_2534.jpg","null","","","","","","0","","","","",""
+"street view slide show","image-button-response","14","22520","0.0-14.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2534/IMG_6_2534.jpg","null","","","","","","0","","","","",""
+"dot matrix survey1","survey","15","24421","0.0-15.0","","","","1","","","","","","","","","","","","1848","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","0","[]","","","",""
+"dot matrix survey2","survey","16","25075","0.0-16.0","","","","1","","","","","","","","","","","","645","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","0","[]","","","",""
+"dot matrix survey3","survey","17","26406","0.0-17.0","","","","1","","","","","","","","","","","","1324","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","0","[]","","","",""
+"sliderTrial_attention","html-slider-response","18","36409","0.0-18.0","","","","1","","","","","","","","","","","","null","[""SV_PolicingMSA/CA_2534/IMG_14_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_5_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_1_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_11_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_8_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_10_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_4_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_6_2534.jpg""]","null","","","","","","0","","4","[""./assets/img/attnchk.png"",""./assets/img/attnchk.png""]","true",""
+"sliderTrial","html-slider-response","19","40596","0.0-19.0","","","","1","","","","","","","","","","","","4185","[""SV_PolicingMSA/CA_2534/IMG_14_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_5_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_1_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_11_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_8_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_10_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_4_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_6_2534.jpg""]","4","","","","","","0","","4","[""./rc_img/cop_condGroup_4_CommunitySafety_autoscaled.png"",""./rc_img/cop_condGroup_4_SafeStreets_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","20","43165","0.0-20.0","","","","1","","","","","","","","","","","","2567","[""SV_PolicingMSA/CA_2534/IMG_14_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_5_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_1_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_11_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_8_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_10_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_4_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_6_2534.jpg""]","4","","","","","","0","","4","[""./rc_img/cop_condGroup_16_CommunitySafety_autoscaled.png"",""./rc_img/cop_condGroup_16_SafeStreets_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","21","44081","0.0-21.0","","","","1","","","","","","","","","","","","915","[""SV_PolicingMSA/CA_2534/IMG_14_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_5_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_1_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_11_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_8_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_10_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_4_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_6_2534.jpg""]","4","","","","","","0","","4","[""./rc_img/cop_condGroup_11_CommunitySafety_autoscaled.png"",""./rc_img/cop_condGroup_11_SafeStreets_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","22","44747","0.0-22.0","","","","1","","","","","","","","","","","","664","[""SV_PolicingMSA/CA_2534/IMG_14_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_5_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_1_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_11_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_8_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_10_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_4_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_6_2534.jpg""]","4","","","","","","0","","4","[""./rc_img/cop_condGroup_12_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_12_CommunitySafety_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","23","45539","0.0-23.0","","","","1","","","","","","","","","","","","790","[""SV_PolicingMSA/CA_2534/IMG_14_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_5_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_1_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_11_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_8_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_10_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_4_2534.jpg"",""SV_PolicingMSA/CA_2534/IMG_6_2534.jpg""]","4","","","","","","0","","4","[""./rc_img/cop_condGroup_18_CommunitySafety_autoscaled.png"",""./rc_img/cop_condGroup_18_SafeStreets_autoscaled.png""]","","4"
+"before_SVSlide_prompt","html-button-response","24","47203","0.0-24.0","","","","1","","","","","","","","","","","","1664","Click [Next] to see the next neighborhood!","0","","","","","","","","","","",""
+"street view slide show","image-button-response","25","48209","0.0-25.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_8565/IMG_3_8565.jpg","null","","","","","","4","","","","",""
+"street view slide show","image-button-response","26","49215","0.0-26.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_8565/IMG_12_8565.jpg","null","","","","","","4","","","","",""
+"street view slide show","image-button-response","27","50221","0.0-27.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_8565/IMG_5_8565.jpg","null","","","","","","4","","","","",""
+"street view slide show","image-button-response","28","51224","0.0-28.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_8565/IMG_7_8565.jpg","null","","","","","","4","","","","",""
+"street view slide show","image-button-response","29","52230","0.0-29.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_8565/IMG_1_8565.jpg","null","","","","","","4","","","","",""
+"street view slide show","image-button-response","30","53236","0.0-30.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_8565/IMG_2_8565.jpg","null","","","","","","4","","","","",""
+"street view slide show","image-button-response","31","54242","0.0-31.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_8565/IMG_8_8565.jpg","null","","","","","","4","","","","",""
+"street view slide show","image-button-response","32","55248","0.0-32.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_8565/IMG_6_8565.jpg","null","","","","","","4","","","","",""
+"dot matrix survey1","survey","33","58654","0.0-33.0","","","","1","","","","","","","","","","","","3385","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","4","[]","","","",""
+"dot matrix survey2","survey","34","59173","0.0-34.0","","","","1","","","","","","","","","","","","510","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","4","[]","","","",""
+"dot matrix survey3","survey","35","60383","0.0-35.0","","","","1","","","","","","","","","","","","1203","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","4","[]","","","",""
+"sliderTrial","html-slider-response","36","67848","0.0-36.0","","","","1","","","","","","","","","","","","7463","[""SV_PolicingMSA/CA_8565/IMG_3_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_12_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_5_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_7_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_1_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_2_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_8_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_6_8565.jpg""]","4","","","","","","4","","4","[""./rc_img/cop_condGroup_6_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_6_CommunitySafety_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","37","69561","0.0-37.0","","","","1","","","","","","","","","","","","1711","[""SV_PolicingMSA/CA_8565/IMG_3_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_12_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_5_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_7_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_1_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_2_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_8_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_6_8565.jpg""]","4","","","","","","4","","4","[""./rc_img/cop_condGroup_13_CommunitySafety_autoscaled.png"",""./rc_img/cop_condGroup_13_SafeStreets_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","38","71598","0.0-38.0","","","","1","","","","","","","","","","","","2035","[""SV_PolicingMSA/CA_8565/IMG_3_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_12_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_5_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_7_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_1_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_2_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_8_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_6_8565.jpg""]","4","","","","","","4","","4","[""./rc_img/cop_condGroup_17_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_17_CommunitySafety_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","39","73580","0.0-39.0","","","","1","","","","","","","","","","","","1979","[""SV_PolicingMSA/CA_8565/IMG_3_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_12_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_5_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_7_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_1_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_2_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_8_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_6_8565.jpg""]","4","","","","","","4","","4","[""./rc_img/cop_condGroup_19_CommunitySafety_autoscaled.png"",""./rc_img/cop_condGroup_19_SafeStreets_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","40","75589","0.0-40.0","","","","1","","","","","","","","","","","","2007","[""SV_PolicingMSA/CA_8565/IMG_3_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_12_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_5_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_7_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_1_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_2_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_8_8565.jpg"",""SV_PolicingMSA/CA_8565/IMG_6_8565.jpg""]","4","","","","","","4","","4","[""./rc_img/cop_condGroup_20_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_20_CommunitySafety_autoscaled.png""]","","4"
+"before_SVSlide_prompt","html-button-response","41","77247","0.0-41.0","","","","1","","","","","","","","","","","","1656","Click [Next] to see the next neighborhood!","0","","","","","","","","","","",""
+"street view slide show","image-button-response","42","78252","0.0-42.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2009/IMG_8_2009.jpg","null","","","","","","1","","","","",""
+"street view slide show","image-button-response","43","79258","0.0-43.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2009/IMG_9_2009.jpg","null","","","","","","1","","","","",""
+"street view slide show","image-button-response","44","80265","0.0-44.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2009/IMG_1_2009.jpg","null","","","","","","1","","","","",""
+"street view slide show","image-button-response","45","81269","0.0-45.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2009/IMG_6_2009.jpg","null","","","","","","1","","","","",""
+"street view slide show","image-button-response","46","82276","0.0-46.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2009/IMG_5_2009.jpg","null","","","","","","1","","","","",""
+"street view slide show","image-button-response","47","83282","0.0-47.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2009/IMG_2_2009.jpg","null","","","","","","1","","","","",""
+"street view slide show","image-button-response","48","84285","0.0-48.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2009/IMG_0_2009.jpg","null","","","","","","1","","","","",""
+"street view slide show","image-button-response","49","85288","0.0-49.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2009/IMG_3_2009.jpg","null","","","","","","1","","","","",""
+"dot matrix survey1","survey","50","87069","0.0-50.0","","","","1","","","","","","","","","","","","1769","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","1","[]","","","",""
+"dot matrix survey2","survey","51","87696","0.0-51.0","","","","1","","","","","","","","","","","","619","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","1","[]","","","",""
+"dot matrix survey3","survey","52","88920","0.0-52.0","","","","1","","","","","","","","","","","","1215","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","1","[]","","","",""
+"sliderTrial_attention","html-slider-response","53","91387","0.0-53.0","","","","1","","","","","","","","","","","","2466","[""SV_PolicingMSA/CA_2009/IMG_8_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_9_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_1_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_6_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_5_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_2_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_0_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_3_2009.jpg""]","4","","","","","","1","","4","[""./assets/img/attnchk.png"",""./assets/img/attnchk.png""]","",""
+"sliderTrial","html-slider-response","54","92851","0.0-54.0","","","","1","","","","","","","","","","","","1463","[""SV_PolicingMSA/CA_2009/IMG_8_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_9_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_1_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_6_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_5_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_2_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_0_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_3_2009.jpg""]","4","","","","","","1","","4","[""./rc_img/cop_condGroup_14_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_14_CommunitySafety_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","55","94388","0.0-55.0","","","","1","","","","","","","","","","","","1535","[""SV_PolicingMSA/CA_2009/IMG_8_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_9_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_1_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_6_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_5_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_2_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_0_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_3_2009.jpg""]","4","","","","","","1","","4","[""./rc_img/cop_condGroup_10_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_10_CommunitySafety_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","56","95812","0.0-56.0","","","","1","","","","","","","","","","","","1422","[""SV_PolicingMSA/CA_2009/IMG_8_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_9_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_1_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_6_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_5_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_2_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_0_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_3_2009.jpg""]","4","","","","","","1","","4","[""./rc_img/cop_condGroup_15_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_15_CommunitySafety_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","57","97368","0.0-57.0","","","","1","","","","","","","","","","","","1554","[""SV_PolicingMSA/CA_2009/IMG_8_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_9_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_1_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_6_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_5_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_2_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_0_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_3_2009.jpg""]","4","","","","","","1","","4","[""./rc_img/cop_condGroup_9_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_9_CommunitySafety_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","58","99425","0.0-58.0","","","","1","","","","","","","","","","","","2055","[""SV_PolicingMSA/CA_2009/IMG_8_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_9_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_1_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_6_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_5_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_2_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_0_2009.jpg"",""SV_PolicingMSA/CA_2009/IMG_3_2009.jpg""]","4","","","","","","1","","4","[""./rc_img/cop_condGroup_5_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_5_CommunitySafety_autoscaled.png""]","","4"
+"before_SVSlide_prompt","html-button-response","59","100967","0.0-59.0","","","","1","","","","","","","","","","","","1541","Click [Next] to see the next neighborhood!","0","","","","","","","","","","",""
+"street view slide show","image-button-response","60","101972","0.0-60.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2555/IMG_8_2555.jpg","null","","","","","","3","","","","",""
+"street view slide show","image-button-response","61","102977","0.0-61.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2555/IMG_13_2555.jpg","null","","","","","","3","","","","",""
+"street view slide show","image-button-response","62","103983","0.0-62.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2555/IMG_3_2555.jpg","null","","","","","","3","","","","",""
+"street view slide show","image-button-response","63","104985","0.0-63.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2555/IMG_14_2555.jpg","null","","","","","","3","","","","",""
+"street view slide show","image-button-response","64","105992","0.0-64.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2555/IMG_9_2555.jpg","null","","","","","","3","","","","",""
+"street view slide show","image-button-response","65","106999","0.0-65.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2555/IMG_6_2555.jpg","null","","","","","","3","","","","",""
+"street view slide show","image-button-response","66","108003","0.0-66.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2555/IMG_2_2555.jpg","null","","","","","","3","","","","",""
+"street view slide show","image-button-response","67","109006","0.0-67.0","","","","1","","","","","","","","","","","","null","stimulus/SV_PolicingMSA/CA_2555/IMG_7_2555.jpg","null","","","","","","3","","","","",""
+"dot matrix survey1","survey","68","110721","0.0-68.0","","","","1","","","","","","","","","","","","1702","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","3","[]","","","",""
+"dot matrix survey2","survey","69","111387","0.0-69.0","","","","1","","","","","","","","","","","","658","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","3","[]","","","",""
+"dot matrix survey3","survey","70","112475","0.0-70.0","","","","1","","","","","","","","","","","","1083","","{""P0_Q0"":null,""P0_Q1"":null}","","","","","","3","[]","","","",""
+"sliderTrial","html-slider-response","71","115068","0.0-71.0","","","","1","","","","","","","","","","","","2591","[""SV_PolicingMSA/CA_2555/IMG_8_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_13_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_3_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_14_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_9_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_6_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_2_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_7_2555.jpg""]","4","","","","","","3","","4","[""./rc_img/cop_condGroup_14_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_14_CommunitySafety_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","72","116523","0.0-72.0","","","","1","","","","","","","","","","","","1453","[""SV_PolicingMSA/CA_2555/IMG_8_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_13_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_3_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_14_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_9_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_6_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_2_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_7_2555.jpg""]","4","","","","","","3","","4","[""./rc_img/cop_condGroup_10_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_10_CommunitySafety_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","73","119058","0.0-73.0","","","","1","","","","","","","","","","","","2531","[""SV_PolicingMSA/CA_2555/IMG_8_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_13_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_3_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_14_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_9_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_6_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_2_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_7_2555.jpg""]","4","","","","","","3","","4","[""./rc_img/cop_condGroup_15_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_15_CommunitySafety_autoscaled.png""]","","4"
+"sliderTrial","html-slider-response","74","120542","0.0-74.0","","","","1","","","","","","","","","","","","1483","[""SV_PolicingMSA/CA_2555/IMG_8_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_13_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_3_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_14_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_9_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_6_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_2_2555.jpg"",""SV_PolicingMSA/CA_2555/IMG_7_2555.jpg""]","4","","","","","","3","","4","[""./rc_img/cop_condGroup_9_SafeStreets_autoscaled.png"",""./rc_img/cop_condGroup_9_CommunitySafety_autoscaled.png""]","","4"

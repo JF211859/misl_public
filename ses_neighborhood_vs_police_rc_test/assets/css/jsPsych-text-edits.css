@@ -1,0 +1,8 @@
+.text-container {
+    max-width: 700px;
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}

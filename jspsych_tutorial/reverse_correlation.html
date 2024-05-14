@@ -1,0 +1,133 @@
+<!--
+    The setup for this document will be very similar to helloworld.html, if any lines
+    appear that are unfamiliar, please refer back to helloworld.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Reverse Correlation</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.0.0/css/jspsych.css">
+    <script src="https://unpkg.com/jspsych@7.2.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+
+    <!--
+        Here we import groups.js from the scripts folder.  This file contains constants
+        that will be used in the script portion of this experiment.  The groups.js file was
+        created using generate_groups.py, and the associated metadata within images/StimulusMetaData.csv
+        Please refer to generate_groups.py to see how this is done and understand the structure
+        of the constants.
+    -->
+    <script src="scripts/groups.js"></script>
+
+</head>
+
+<body></body>
+
+<script>
+
+    var jsPsych = initJsPsych({});
+
+    timeline = [];
+
+    // Here we choose a section and import the appropriate filenames from groups.js
+    // This gives us a map from trial name to the images contained within the trial
+    // The condition name associated with the trials can be found by using
+    // condition_map[<trial name>].
+    const section = 1;
+    const stimuli_map = groups[section];
+
+    // We will also need the images that are generated from noise, the correlation images
+    const correlation_images = [
+        "images/A.png",
+        "images/B.png",
+    ];
+
+    // Now to help with performance all images will be preloaded into jsPsych
+    // We loop over all the trail names that are present in stimuli map,
+    // unpack the values with the ... operator, and place them into an array that
+    // holds all stimuli images so we can preload them.
+    let preload_images = [];
+    for (trial_name in stimuli_map){
+        preload_images.push(...stimuli_map[trial_name]);
+    }
+
+    // We will add any additional images we plan on using to the preload_images array
+    preload_images.push(...correlation_images);
+
+    const preload = {
+        type: jsPsychPreload,
+        auto_preload: true,
+        images: preload_images,
+        message: "Please wait one moment ...",
+        show_progress_bar: true,
+    };
+
+    // Before we start using all the images, we must shuffle them to eliminate
+    // systemic biases.  This will be done by create a function that shuffles
+    // all the elements in an array, then creating shuffled versions of all the variables
+    // that we will use.
+
+    function shuffle_array(array){
+        // Don't worry about this line, but feel free to steal the whole function for other
+        // experiments
+        return array.sort(() => Math.random() - 0.5);
+    }
+
+    for(let trial_name in stimuli_map){
+        stimuli_map[trial_name] = shuffle_array(stimuli_map[trial_name]);
+    }
+
+    // Now we will create a function that takes a set of reverse correlation images
+    // and stimuli, and outputs a jsPsych reverse correlation trial that shows the
+    // stimuli and has the participant pick from the reverse correlation images.
+
+    function make_reverse_correlation_trial(stimuli, correlation_images){
+
+        // First we create a variable that holds all the html for what how the stimuli
+        // should be presented.
+        let stimuli_html = ""
+        for (let stimulus_path of stimuli){
+            stimuli_html += `<img src='${stimulus_path}'height=180em>`
+        }
+
+        // Then we create a list of options for the participant to choose from
+        let choices = []
+        for (let correlation_image of correlation_images){
+            choices.push(`<img src='${correlation_image}' height=150em>`)
+        }
+
+        // A small prompt to direct the participant
+        prompt_html = `<p> Please choose the correlation image that matches the stimuli. </p>`;
+
+        // Putting it all together in the jsPsychHtmlButtonResponse template.
+        let trial = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: stimuli_html,
+            prompt: prompt_html,
+            choices: choices,
+        };
+
+        // Returning the trial so that it can be placed in the timeline.
+        return trial;
+    }
+
+    // We will loop through all trial names in the section and create a trial for each.
+    // Then push the trials to the timeline.  We will add them to the timeline
+    // in a random order to eliminate systemic biases.
+    trial_names = Object.keys(stimuli_map);
+    trial_names = shuffle_array(trial_names);
+    for (let trial_name of trial_names){
+        let trial = make_reverse_correlation_trial(stimuli_map[trial_name], correlation_images);
+        timeline.push(trial);
+    }
+
+    jsPsych.run(timeline);
+
+</script>

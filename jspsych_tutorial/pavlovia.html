@@ -1,0 +1,109 @@
+<!--
+    The setup for this document will be very similar to helloworld.html, if any lines
+    appear that are unfamiliar, please refer back to helloworld.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Pavlovia</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.0.0/css/jspsych.css">
+
+
+    <script src="https://unpkg.com/jspsych@7.2.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+    <!--
+        Here we import pavlovia.  This is imported from a relative directory that is not
+        contained within our local files.  The files are contained within the pavlovia server.
+        Whenever we import files that we do not have locally, the experiment can only be run on the server that contains
+        the files.  Meaning that if we try to run this experiment locally, it will fail.  We must
+        upload this experiment to https://gitlab.pavlovia.org/ and run it through Pavlovia for this
+        line not to fail.
+    -->
+    <script src="lib/jspsych-7-pavlovia-2022.1.1.js"></script>
+
+</head>
+
+<body></body>
+
+<script>
+
+    var jsPsych = initJsPsych({});
+
+    timeline = [];
+
+    // Similarly to how we initialized jsPsych, we must initialize Pavlovia as well.  This is done
+    // by creating a jsPsych task of type jsPsychPavlovia, and giving it the command "init".
+
+    var pavlovia_init = {
+        type: jsPsychPavlovia,
+        data: {
+             task: 'pavlovia-init'
+         },
+         command: "init"
+    };
+
+    // As always this task is pushed to the timeline.
+
+    timeline.push(pavlovia_init);
+
+    // We will create the same experiment that was done in helloworld.html
+
+    var helloWorld = {
+        type : jsPsychHtmlButtonResponse,
+        stimulus: "Hello World?",
+        choices: ["Yes, Hello World!", "No, Goodbye World!"]
+    };
+
+    timeline.push(helloWorld);
+
+    // Similar to how we initialized pavlovia, we must close out of pavlovia
+    // by creating a jsPsych task of type jsPsychPavlovia, and give it the command "finish".
+
+    var pavlovia_finish = {
+        type: jsPsychPavlovia,
+        data: {
+            task: 'pavlovia-finish'
+        },
+        command: "finish",
+    };
+
+    timeline.push(pavlovia_finish)
+
+    jsPsych.run(timeline)
+
+
+    // To run this experiment on Pavlovia we must first rename this file
+    // from pavlovia.html to index.html.  index.html is the special name given to the
+    // main html file in a repository.  Pavlovia will look for this file and execute the
+    // experiment described within it.
+
+    // Live server will also look for index.html and execute that if it finds it, but will
+    // give the option to run any other file if its not found.  Pavlovia isn't as forgiving
+    // and will crash if no index.html file is present.  So make sure to change the file back
+    // to pavlovia.html before trying to run any other files locally.
+
+    // In order to run this experiment we must upload it to https://gitlab.pavlovia.org/
+    // Instructions on uploading to gitlab can be found in Ara's great Git Guide.
+    // https://www.notion.so/mindinsocietylab/Version-Control-Resources-Git-498096fa0bf44954ae46863e895b6d0e
+
+    // Once uploaded, sign in to https://pavlovia.org/ and navigate to dashboard -> experiments
+    // Here a experiment with the name of the repository should be seen.  If this is your
+    // first time running the experiment, you must first change the status of the experiment from
+    // inactive to piloting.  Then the experiment can be run with the "Piloting".
+
+    // When an experiment is ready to go live, change the status to "Running", and a link will
+    // be provided for distribution to participants.
+
+</script>
+
+</html>
+
+<!--
+    Congratulations! Please continue on to reverse_correlation.html to learn
+    how to create a full reverse correlation experiment using jsPsych!
+-->

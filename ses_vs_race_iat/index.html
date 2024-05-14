@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Reverse Correlation Study</title>
+    <meta charset="UTF-8">
+
+    <!---- STYLESHEETS ---->
+    <link rel="stylesheet" href="assets/css/jspsych.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-alart.css">
+    <link rel="stylesheet" href="assets/css/jsPsych-padding.css">
+    <link rel="stylesheet" href="assets/css/jsPsych-text-edits.css">
+    <link rel="stylesheet" href="assets/css/center.css">
+    <link rel="stylesheet" href="assets/css/survey.css">
+
+    <!---- SCRIPTS ---->
+    <script src="https://unpkg.com/jspsych@7.2.3"></script>
+    <!-- <script src="lib/jspsych-7-pavlovia-2022.1.1.js"></script> -->
+
+    <script src="assets/scripts/groups.js"></script>
+    <script src="assets/scripts/firebase.js"></script>
+    <script src="assets/scripts/jquery-3.6.0.min.js"></script>
+    <script src="assets/scripts/script.js"></script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="https://unpkg.com/@jspsych/plugin-browser-check@1.0.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-button-response@1.1.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@1.0.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey@0.2.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-iat-html@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-iat-image@1.1.3"></script>
+    <script src="assets/scripts/plugin-html-slider-response.js"></script>
+    <script src="assets/scripts/jspsych-html-mouse-response.js"></script>
+
+    <style>
+        .sv_main .sv_container .sv_body .sv_p_root table.sv_q_matrix td {
+            min-width: 1em;
+        }
+    </style>
+
+</head>
+
+<body></body>
+
+<script>
+    ////////* STUDY SETUP */////////
+
+    // Initialize jsPsych
+    var jsPsych = initJsPsych({
+        use_webaudio: false,
+        on_finish: function(data){
+            var prolific_id = jsPsych.data.getURLVariable('prolific_id');
+            window.location.assign("https://app.prolific.com/submissions/complete?cc=C1GXQTQH")
+        },
+    });
+
+    //Create initialization and final pavlovia events
+
+    // var pavlovia_init = {
+    //     type: jsPsychPavlovia,
+    //     data: {
+    //          task: 'pavlovia-init'
+    //      },
+    //     command: "init"
+    // };
+
+    // var pavlovia_finish = {
+    //      type: jsPsychPavlovia,
+    //      data: {
+    //          task: 'pavlovia-finish'
+    //      },
+    //      command: "finish",
+    //      participantId: pavlovia_id
+    // };
+
+    //Record Prolific id, study id, and session id
+
+    var subject_id = jsPsych.data.getURLVariable("prolific_id"); // Prolific ID FOR SUBJECT POOL
+    var study_id = jsPsych.data.getURLVariable('STUDY_ID');
+    var session_id = jsPsych.data.getURLVariable('SESSION_ID');
+
+    jsPsych.data.addProperties({
+        subject_id: subject_id,
+        study_id: study_id,
+        session_id: session_id,
+    });
+
+    var timeline = [];
+
+    // timeline.push(pavlovia_init);
+
+    //////////* PROMPTING DEFINITIONS *//////////
+
+    var section = Math.floor(Math.random() * 15) + 1;
+
+    //Record Section number
+
+    jsPsych.data.addProperties({ section: section });
+
+    var stimuli_map = groups[section];
+
+    var condition = Math.floor(Math.random() * 2) + 1;
+
+    jsPsych.data.addProperties({ condition: condition});
+
+    // 3D array, where each table corresponds to a specific condition,
+    // each row corresponds to a specific block, and each value is a simulus image.
+    var stimuli = [];
+
+    for (key in stimuli_map){
+        if (condition == condition_map[key]){
+            stimuli.push(stimuli_map[key]);
+        }
+    }
+
+    var pavlovia_id = 's-' + section + '_p-' + subject_id + '_s-' + session_id;
+
+    var browserCheck = {
+        type: jsPsychBrowserCheck,
+        data: {
+            task: 'browser-check'
+        },
+        minimum_width: 700
+    };
+    timeline.push(browserCheck);
+
+    //TODO replace the underlines in the following passage with the appropriate numbers for the trial.
+
+    var consentForm = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: consentHTML,
+        data: {
+            task: 'consent'
+        },
+        choices: ['Decline and exit', 'Accept and continue'],
+    };
+
+    timeline.push(consentForm);
+
+    flat_stimuli = [];
+
+    for (stimulus of stimuli.flat().flat()){
+        flat_stimuli.push(`stimulus/${stimulus}`);
+    }
+
+    preload_images = [
+        [
+        'assets/img/attnchk.png',
+        'assets/img/countdown-15.gif',
+        'assets/img/example.png',
+        'assets/img/ladder_marked.png',
+        'assets/img/redirect.png',
+        ],
+        flat_stimuli
+    ].flat();
+
+    var preload = {
+        type: jsPsychPreload,
+        images: preload_images,
+        message: `Please wait while the experiment loads. This should take only a moment.`
+    };
+
+
+    var intro1 = {
+        type: jsPsychHtmlButtonResponse,
+        data: {
+            task: 'instructions',
+        },
+        choices: ['Next'],
+        stimulus: html_intro1
+    };
+
+
+    var intro2 = {
+        type: jsPsychHtmlButtonResponse,
+        data: {
+            task: 'instructions',
+        },
+        choices: ['Next'],
+        stimulus: html_intro2
+    };
+
+
+    ////////* EXPERIMENT */////////
+    function trialSVIntro(first = false) {
+        if (first) {
+            var stim = `
+                <div class="text-container">
+                    <h3>On the next page, you will view few Google Streetview images taken from a neighborhood.</h3>
+                </div>
+            `;
+        } else {
+            var stim = `
+                <div class="text-container">
+                    <h3>Click next to see the next neighborhood.</h3>
+                </div>
+            `;
+        }
+
+        var trialSVIntro = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: stim,
+            choices: ['Next']
+        };
+
+        return trialSVIntro;
+    };
+
+    function make_block(stimuli /*array of stimuli to be shown*/, block_number) {
+
+        var before_SVSlide = {
+            type: jsPsychHtmlButtonResponse,
+            data: {
+                task: 'before_SVSlide_prompt',
+            },
+            choices: ['Next'],
+            stimulus: 'Click [Next] to see the next neighborhood!',
+        }
+        timeline.push(before_SVSlide);
+
+        // SV trial
+        function svTrial(img) {
+            var trialSV = {
+                type: jsPsychImageButtonResponse,
+                data: {
+                    task: 'street view slide show',
+                    block: block_number
+                },
+                stimulus: 'stimulus/' + img,
+                trial_duration: 1000, //1000
+                choices: [],
+            }
+            return trialSV
+        };
+
+        var preambleStr = `
+            <p class="text-container">Take a look at the following street view images.</p>
+            <div style="max-width: 80%; margin: 0 auto; text-align: center;">
+        `
+        for (var stimulus of stimuli) {
+            preambleStr += `<img src='stimulus/${stimulus}' width=20% height=auto; style="padding: 5px;">`;
+        }
+        preambleStr += "</div>";
+
+        var preambleStr_neighbor = `
+            <p class="text-container">What is your best guess as to how this neighborhood compares to national averages in each of the following categories?</p>
+            <div style="max-width: 80%; margin: 0 auto; text-align: center;">
+            `
+        for (var stimulus of stimuli) {
+            preambleStr_neighbor += `<img src='stimulus/${stimulus}' width=20% height=auto; style="padding: 5px;">`;
+        }
+        preambleStr_neighbor += "</div>";
+
+        var preambleStr_wouldyou = `
+            <p class="text-container">Would you...</p>
+            <div style="max-width: 80%; margin: 0 auto; text-align: center;">
+            `
+        for (var stimulus of stimuli) {
+            preambleStr_wouldyou += `<img src='stimulus/${stimulus}' width=20% height=auto; style="padding: 5px;">`;
+        }
+        preambleStr_wouldyou += "</div>";
+
+        var dotMatrix_items = {
+            type: jsPsychSurvey,
+            button_label_finish: "Continue",
+            data: {
+                task: "matrix_crime",
+                block: block_number
+            },
+            pages: [
+                [
+                    {
+                        type: "html",
+                        prompt: preambleStr_neighbor,
+                    },
+                    {
+                        type: "likert-table",
+                        prompt: " ",
+                        options: ['Far below average', 'Somewhat below average', 'Average', 'Somewhat above average', 'Far above average'],
+                        required: false,
+                        statements: [
+                            {prompt: 'Violence (e.g. gun, domestic, sexual)', name: 'violence'},
+                            {prompt: 'Crime (e.g., homicide, robbery, burglary, etc.)', name: 'crime'},
+                            {prompt: 'Drug abuse', name: 'drug'},
+                            {prompt: 'Quality of schools', name: 'schools'},
+                            {prompt: 'Economic opportunities', name: 'opportunities'},
+                        ]
+                    }
+
+                ]
+            ]
+        };
+
+        var dotMatrix_items_wouldyou = {
+            type: jsPsychSurvey,
+            button_label_finish: "Continue",
+            data: {
+                task: "matrix_wouldyou",
+                block: block_number
+            },
+            pages: [
+                [
+                    {
+                        type: "html",
+                        prompt: preambleStr_wouldyou,
+                    },
+                    {
+                        type: "likert-table",
+                        prompt: " ",
+                        options: ['Definitely wouldn\'t', 'Probably wouldn\'t', 'Might', 'Probably would', 'Definitely would'],
+                        required: false,
+                        statements: [
+                            {prompt: 'consider moving to this neighborhood?', name: 'movein'},
+                            {prompt: 'want to move out of this neighborhood if you lived there?', name: 'moveout'},
+                            {prompt: 'do your shopping around this neighborhood?', name: 'shopping'},
+                            {prompt: 'walk through this neighborhood alone at night?', name: 'walk'},
+                            {prompt: 'spend time at the local park in this neighborhood?', name: 'park'},
+                            {prompt: 'send a child who is under your care to school in this neighborhood?', name: 'school'},
+                        ]
+                    }
+
+                ]
+            ]
+        };
+
+        for (var stimulus of stimuli) {
+            timeline.push(svTrial(stimulus));
+        }
+
+        var after_trial = {
+            type: jsPsychHtmlKeyboardResponse,
+            data: {
+                task: 'ater_trial_blanks',
+            },
+            choices: "NO_KEYS",
+            stimulus: ' ',
+            trial_duration: 250,
+        }
+
+        timeline.push(dotMatrix_items);
+        timeline.push(dotMatrix_items_wouldyou);
+
+    };
+
+    ////////* PROMPTING TIMELINE */////////
+
+    timeline.push(preload);
+    timeline.push(intro1);
+    timeline.push(intro2);
+
+    for (i = 0 ; i < stimuli.length ; ++i){
+        make_block(stimuli[i], i);
+    }
+
+    ////////* IAT DEFINITIONS */////////
+
+    var images =['img/race/bf14_nc.jpg','img/race/bf23_nc.jpg','img/race/bf56_nc.jpg','img/race/bm14_nc.jpg',
+        'img/race/bm23_nc.jpg','img/race/bm56_nc.jpg','img/race/wf2_nc.jpg','img/race/wf3_nc.jpg',
+        'img/race/wf6_nc.jpg','img/race/wm1_nc.jpg','img/race/wm4_nc.jpg','img/race/wm6_nc.jpg'];
+
+    var preload = {
+        type: jsPsychPreload,
+        images: images
+    };
+
+    var welcome_block = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<p>Welcome to the Age Task. In this study you will ' +
+      'complete an Implicit Association Test (IAT) in which you ' +
+      'will be asked to sort pictures and words into groups as ' +
+      'fast as you can.</p><p>Press any key to begin.</p>',
+      post_trial_gap: 1500
+    }
+
+    var category_block = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<p>Next, you will use the "e" and "i" computer keys ' + 'to categorize items into groups as fast as you can. ' +
+      'These are the four groups and the items that belong to each:<br><br>' +
+      '<strong>Good</strong>:<br>' + 'Fabulous, Excitement, Glorious, Cheerful, Cherish, ' +
+      'Enjoy, Delightful, Joyous<br><br>' + '<strong>Bad</strong>:<br>' + 'Humiliate, ' +
+      'Evil, Grief, Yucky, Detest, Poison, Abuse, Despise<br><br>' +
+      '<strong>Black</strong>:<br>' + "<img src='img/race/bf14_nc.jpg''></img>  " +
+      "<img src='img/race/bf23_nc.jpg'></img>  " + "<img src='img/race/bf56_nc.jpg'></img>  " +
+      "<img src='img/race/bm14_nc.jpg'></img>  " + "<img src='img/race/bm23_nc.jpg'></img>  " +
+      "<img src='img/race/bm56_nc.jpg'></img><br><br>" + '<strong>White</strong>:<br>' +
+      "<img src='img/race/wf2_nc.jpg'></img>  " + "<img src='img/race/wf3_nc.jpg'></img>  " +
+      "<img src='img/race/wf6_nc.jpg'></img>  " + "<img src='img/race/wm1_nc.jpg'></img>  " +
+      "<img src='img/race/wm4_nc.jpg'></img>  " + "<img src='img/race/wm6_nc.jpg'></img><br><br>" +
+      "Press any key to continue.</p>",
+      post_trial_gap: 1500
+    };
+
+    var instructions_block = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "<div style='position: absolute; top: 18%; left: 20%'><p>Press e for:<br><strong>BLACK</strong></p></div>" +
+      "<div style='position: absolute; top: 18%; right: 20%'><p>Press i for:<br><strong>WHITE</strong></p></div>" +
+      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>Put a left finger on the <strong>e</strong> key for items that belong to the Black People category. Put a right finger on the " +
+      "<strong>i</strong> key for items that belong to the White People " +
+      "category. Items will appear one at a time.<br><br>" + "If you " +
+      "make a mistake, a red X will appear. Press the keys listed below " +
+      "to continue. Go as fast as you can while being accurate.<br><br> " +
+      "Press the any key when you are ready to start.</div>",
+    };
+
+    var trial_block = {
+      timeline: [
+        {
+          type: jsPsychIatImage,
+          stimulus: jsPsych.timelineVariable('stimulus'),
+          stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+          html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+          bottom_instructions: '<p>If you press the wrong key, a red X will appear. Press the other key to continue</p>',
+          force_correct_key_press: true,
+          display_feedback: true,
+          trial_duration: 3000, //Only if display_feedback is false
+          left_category_key: 'e',
+          right_category_key: 'i',
+          left_category_label: ['BLACK'],
+          right_category_label: ['WHITE'],
+          response_ends_trial: true,
+          data: { iat_type: 'practice' }
+        }
+      ],
+      timeline_variables: [
+        {stimulus: "img/race/bf14_nc.jpg", stim_key_association: "left"},
+        {stimulus: "img/race/bf23_nc.jpg", stim_key_association: "left"},
+        {stimulus: "img/race/bf56_nc.jpg", stim_key_association: "left"},
+        {stimulus: "img/race/bm14_nc.jpg", stim_key_association: "left"},
+        {stimulus: "img/race/bm23_nc.jpg", stim_key_association: "left"},
+        {stimulus: "img/race/bm56_nc.jpg", stim_key_association: "left"},
+        {stimulus: "img/race/wf2_nc.jpg", stim_key_association: "right"},
+        {stimulus: "img/race/wf3_nc.jpg", stim_key_association: "right"},
+        {stimulus: "img/race/wf6_nc.jpg", stim_key_association: "right"},
+        {stimulus: "img/race/wm1_nc.jpg", stim_key_association: "right"},
+        {stimulus: "img/race/wm4_nc.jpg", stim_key_association: "right"},
+        {stimulus: "img/race/wm6_nc.jpg", stim_key_association: "right"}
+      ],
+      randomize_order: true,
+      repetitions: 2
+    };
+
+    var instructions_block2 = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "<div style='position: absolute; top: 18%; left: 20%'>Press E for:<br><strong>BAD</strong></div>" +
+      "<div style='position: absolute; top: 18%; right: 20%'>Press I for:<br><strong>GOOD</strong></div>" +
+      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>Put a left finger on the <strong>e</strong> key for items that " +
+      "belong to the Bad category. Put a right finger on the " +
+      "<strong>i</strong> key for items that belong to the Good " +
+      "category. Items will appear one at a time.<br><br>" + "If you " +
+      "make a mistake, a red X will appear. Press the keys listed below " +
+      "to continue. Go as fast as you can while being accurate.<br><br> " +
+      "Press the any key when you are ready to start.</div>",
+    };
+
+    var trial_block2 = {
+      timeline: [
+        {
+          type: jsPsychIatHtml,
+          stimulus: jsPsych.timelineVariable('stimulus'),
+          stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+          html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+          bottom_instructions: '<p>If you press the wrong key, a red X will appear. Press the other key to continue</p>',
+          force_correct_key_press: true,
+          display_feedback: true,
+          trial_duration: 3000, //Only if display_feedback is false
+          left_category_key: 'e',
+          right_category_key: 'i',
+          left_category_label: ['BAD'],
+          right_category_label: ['GOOD'],
+          response_ends_trial: true,
+          data: { iat_type: 'practice' }
+        }
+      ],
+      timeline_variables: [
+        {stimulus: "Humiliate", stim_key_association: "left"},
+        {stimulus: "Evil", stim_key_association: "left"},
+        {stimulus: "Grief", stim_key_association: "left"},
+        {stimulus: "Yucky", stim_key_association: "left"},
+        {stimulus: "Detest", stim_key_association: "left"},
+        {stimulus: "Poison", stim_key_association: "left"},
+        {stimulus: "Abuse", stim_key_association: "left"},
+        {stimulus: "Despise", stim_key_association: "left"},
+        {stimulus: "Fabulous", stim_key_association: "right"},
+        {stimulus: "Excitement", stim_key_association: "right"},
+        {stimulus: "Glorious", stim_key_association: "right"},
+        {stimulus: "Cheerful", stim_key_association: "right"},
+        {stimulus: "Cherish", stim_key_association: "right"},
+        {stimulus: "Enjoy", stim_key_association: "right"},
+        {stimulus: "Delightful", stim_key_association: "right"},
+        {stimulus: "Joyous", stim_key_association: "right"}
+      ],
+      randomize_order: true,
+      repetitions: 2
+    };
+
+    var instructions_block3 = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "<div style='position: absolute; top: 18%; left: 20%'>Press e for:<br> " +
+      "<strong>BAD</strong><br>" + "or<br>" + "<strong>BLACK</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>" +
+      "Press i for:<br>" + "<strong>GOOD</strong><br>" + "or<br>" + "<strong>WHITE</strong></div>" +
+      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>Use <strong>e</strong> for Bad and for " +
+      "Black People<br>" + "Use <strong>i</strong> for Good and for White People<br>" +
+      "Each item belongs to only one category.<br><br>" + "If you " +
+      "make a mistake, a red X will appear. Press the keys listed below " +
+      "to continue. Go as fast as you can while being accurate.<br><br> " +
+      "Press the any key when you are ready to start.</div>",
+    };
+
+    var trial_block3 = {
+      timeline: [
+        {
+          type: jsPsych.timelineVariable('type'),
+          stimulus: jsPsych.timelineVariable('stimulus'),
+          stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+          html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+          bottom_instructions: '<p>If you press the wrong key, a red X will appear. Press the other key to continue</p>',
+          force_correct_key_press: true,
+          display_feedback: true,
+          trial_duration: 3000, //Only if display_feedback is false
+          left_category_key: 'e',
+          right_category_key: 'i',
+          left_category_label: ['BAD', 'BLACK'],
+          right_category_label: ['GOOD', 'WHITE'],
+          response_ends_trial: true,
+          data: { iat_type: 'practice' }
+        }
+      ],
+      timeline_variables: [
+        {type: jsPsychIatImage, stimulus: "img/race/bf14_nc.jpg", stim_key_association: "left"},
+        {type: jsPsychIatImage, stimulus: "img/race/bf23_nc.jpg", stim_key_association: "left"},
+        {type: jsPsychIatImage, stimulus: "img/race/bf56_nc.jpg", stim_key_association: "left"},
+        {type: jsPsychIatImage, stimulus: "img/race/bm14_nc.jpg", stim_key_association: "left"},
+        {type: jsPsychIatImage, stimulus: "img/race/bm23_nc.jpg", stim_key_association: "left"},
+        {type: jsPsychIatImage, stimulus: "img/race/bm56_nc.jpg", stim_key_association: "left"},
+        {type: jsPsychIatImage, stimulus: "img/race/wf2_nc.jpg", stim_key_association: "right"},
+        {type: jsPsychIatImage, stimulus: "img/race/wf3_nc.jpg", stim_key_association: "right"},
+        {type: jsPsychIatImage, stimulus: "img/race/wf6_nc.jpg", stim_key_association: "right"},
+        {type: jsPsychIatImage, stimulus: "img/race/wm1_nc.jpg", stim_key_association: "right"},
+        {type: jsPsychIatImage, stimulus: "img/race/wm4_nc.jpg", stim_key_association: "right"},
+        {type: jsPsychIatImage, stimulus: "img/race/wm6_nc.jpg", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Humiliate", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Evil", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Grief", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Yucky", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Detest", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Poison", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Abuse", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Despise", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Fabulous", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Excitement", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Glorious", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Cheerful", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Cherish", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Enjoy", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Delightful", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Joyous", stim_key_association: "right"}
+      ],
+      randomize_order: true,
+      repetitions: 1
+    };
+
+    var instructions_block4 = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "<div style='position: absolute; top: 18%; left: 20%'>Press e for:<br> " +
+      "<strong>BAD</strong><br>" + "or<br>" + "<strong>BLACK</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>" +
+      "Press i for:<br>" + "<strong>GOOD</strong><br>" + "or<br>" + "<strong>WHITE</strong></div>" +
+      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>This is the same as the previous part.<br>" + "Use <strong>e</strong> for Bad and for " +
+      "Black People<br>" + "Use <strong>i</strong> for Good and for White People<br>" +
+      "Each item belongs to only one category.<br><br>" + "If you " +
+      "make a mistake, a red X will appear. Press the keys listed below " +
+      "to continue. Go as fast as you can while being accurate.<br><br> " +
+      "Press the any key when you are ready to start.</div>",
+    };
+
+    var trial_block4 = {
+      timeline: [
+          {
+            type: jsPsych.timelineVariable('type'),
+            is_html: jsPsych.timelineVariable('is_html'),
+            stimulus: jsPsych.timelineVariable('stimulus'),
+            stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+            html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+            bottom_instructions: '<p>If you press the wrong key, a red X will appear. Press the other key to continue</p>',
+            force_correct_key_press: true,
+            display_feedback: true,
+            trial_duration: 3000, //Only if display_feedback is false
+            left_category_key: 'e',
+            right_category_key: 'i',
+            left_category_label: ['BAD', 'BLACK'],
+            right_category_label: ['GOOD', 'WHITE'],
+            response_ends_trial: true,
+            data: { iat_type: 'bad-black' }
+          }
+        ],
+        timeline_variables: [
+          {type: jsPsychIatImage, stimulus: "img/race/bf14_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/bf23_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/bf56_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/bm14_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/bm23_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/bm56_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/wf2_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/wf3_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/wf6_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/wm1_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/wm4_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/wm6_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Humiliate", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Evil", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Grief", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Yucky", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Detest", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Poison", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Abuse", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Despise", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Fabulous", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Excitement", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Glorious", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Cheerful", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Cherish", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Enjoy", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Delightful", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Joyous", stim_key_association: "right"}
+        ],
+        randomize_order: true,
+        repetitions: 2
+      };
+
+      var instructions_block5 = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: "<div style='position: absolute; top: 18%; left: 20%'>Press e for:<br>" + "<strong>WHITE</strong></div>" +
+        "<div style='position: absolute; top: 18%; right: 20%'>Press i for:<br>" + "<strong>BLACK</strong></div>" +
+        "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>Watch out, the labels have changed positions!<br>" +
+        "Use <strong>e</strong> for White People<br>" + "Use <strong>i</strong> for Black People<br><br>" +
+        "If you make a mistake, a red X will appear. Press the keys listed below " +
+        "to continue. Go as fast as you can while being accurate.<br><br> " +
+        "Press the any key when you are ready to start.</div>"
+      };
+
+      var trial_block5 = {
+        timeline: [
+          {
+            type: jsPsychIatImage,
+            is_html: false,
+            stimulus: jsPsych.timelineVariable('stimulus'),
+            stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+            html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+            bottom_instructions: '<p>If you press the wrong key, a red X will appear. Press the other key to continue</p>',
+            force_correct_key_press: true,
+            display_feedback: true,
+            trial_duration: 3000, //Only if display_feedback is false
+            left_category_key: 'e',
+            right_category_key: 'i',
+            left_category_label: ['WHITE'],
+            right_category_label: ['Black'],
+            response_ends_trial: true,
+            data: { iat_type: 'practice' }
+          }
+        ],
+        timeline_variables: [
+          {type: jsPsychIatImage, stimulus: "img/race/bf14_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/bf23_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/bf56_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/bm14_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/bm23_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/bm56_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/wf2_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/wf3_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/wf6_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/wm1_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/wm4_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/wm6_nc.jpg", stim_key_association: "left"}
+        ],
+        randomize_order: true,
+        repetitions: 2
+      };
+
+      var instructions_block6 = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: "<div style='position: absolute; top: 18%; left: 20%'>Press e for:<br>" + "<strong>BAD</strong><br>" + "or<br>" +
+        "<strong>WHITE</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>Press i for:<br>" + "<strong>GOOD</strong><br>" + "or<br>" +
+        "<strong>Black</strong></div>" +
+        "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>Use <strong>e</strong> for Bad and for White People<br>" +
+        "Use <strong>i</strong> for Good and for Black People<br><br>" +
+        "If you make a mistake, a red X will appear. Press the keys listed below " +
+        "to continue. Go as fast as you can while being accurate.<br><br> " +
+        "Press the any key when you are ready to start.</div>"
+      };
+
+      var trial_block6 = {
+        timeline: [
+        {
+          type: jsPsych.timelineVariable('type'),
+          stimulus: jsPsych.timelineVariable('stimulus'),
+          stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+          html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+          bottom_instructions: '<p>If you press the wrong key, a red X will appear. Press the other key to continue</p>',
+          force_correct_key_press: true,
+          display_feedback: true,
+          trial_duration: 3000, //Only if display_feedback is false
+          left_category_key: 'e',
+          right_category_key: 'i',
+          left_category_label: ['BAD', 'WHITE'],
+          right_category_label: ['GOOD', 'Black'],
+          response_ends_trial: true,
+          data: {iat_type: 'practice'}
+        }
+        ],
+        timeline_variables: [
+          {type: jsPsychIatImage, stimulus: "img/race/bf14_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/bf23_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/bf56_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/bm14_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/bm23_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/bm56_nc.jpg", stim_key_association: "right"},
+          {type: jsPsychIatImage, stimulus: "img/race/wf2_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/wf3_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/wf6_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/wm1_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/wm4_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatImage, stimulus: "img/race/wm6_nc.jpg", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Humiliate", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Evil", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Grief", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Yucky", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Detest", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Poison", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Abuse", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Despise", stim_key_association: "left"},
+          {type: jsPsychIatHtml, stimulus: "Fabulous", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Excitement", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Glorious", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Cheerful", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Cherish", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Enjoy", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Delightful", stim_key_association: "right"},
+          {type: jsPsychIatHtml, stimulus: "Joyous", stim_key_association: "right"}
+        ],
+        randomize_order: true,
+        repetitions: 1
+      };
+
+      var instructions_block7 = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: "<div style='position: absolute; top: 18%; left: 20%'>Press e for:<br>" + "<strong>Bad</strong><br>" + "or<br>" +
+        "<strong>White People</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>Press i for:<br>" + "<strong>Good</strong><br>" + "or<br>" +
+        "<strong>Black People</strong></div>" +
+        "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>This is the same as the previous part<br>" +
+        "Use <strong>e</strong> for Bad and for White People<br>" +
+        "Use <strong>i</strong> for Good and for Black People<br>" +
+        "Each item belongs to only one category<br><br>" +
+        "If you make a mistake, a red X will appear. Press the keys listed below " +
+        "to continue. Go as fast as you can while being accurate.<br><br> " +
+        "Press the any key when you are ready to start.</div>"
+      };
+
+    var trial_block7 = {
+      timeline: [
+      {
+        type: jsPsych.timelineVariable('type'),
+        is_html: jsPsych.timelineVariable('is_html'),
+        stimulus: jsPsych.timelineVariable('stimulus'),
+        stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+        html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+        bottom_instructions: '<p>If you press the wrong key, a red X will appear. Press the other key to continue</p>',
+        force_correct_key_press: true,
+        display_feedback: true,
+        trial_duration: 3000, //Only if display_feedback is false
+        left_category_key: 'e',
+        right_category_key: 'i',
+        left_category_label: ['BAD', 'WHITE'],
+        right_category_label: ['GOOD', 'Black'],
+        response_ends_trial: true,
+        data: {iat_type: 'bad-white'}
+      }
+      ],
+      timeline_variables: [
+        {type: jsPsychIatImage, stimulus: "img/race/bf14_nc.jpg", stim_key_association: "right"},
+        {type: jsPsychIatImage, stimulus: "img/race/bf23_nc.jpg", stim_key_association: "right"},
+        {type: jsPsychIatImage, stimulus: "img/race/bf56_nc.jpg", stim_key_association: "right"},
+        {type: jsPsychIatImage, stimulus: "img/race/bm14_nc.jpg", stim_key_association: "right"},
+        {type: jsPsychIatImage, stimulus: "img/race/bm23_nc.jpg", stim_key_association: "right"},
+        {type: jsPsychIatImage, stimulus: "img/race/bm56_nc.jpg", stim_key_association: "right"},
+        {type: jsPsychIatImage, stimulus: "img/race/wf2_nc.jpg", stim_key_association: "left"},
+        {type: jsPsychIatImage, stimulus: "img/race/wf3_nc.jpg", stim_key_association: "left"},
+        {type: jsPsychIatImage, stimulus: "img/race/wf6_nc.jpg", stim_key_association: "left"},
+        {type: jsPsychIatImage, stimulus: "img/race/wm1_nc.jpg", stim_key_association: "left"},
+        {type: jsPsychIatImage, stimulus: "img/race/wm4_nc.jpg", stim_key_association: "left"},
+        {type: jsPsychIatImage, stimulus: "img/race/wm6_nc.jpg", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Humiliate", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Evil", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Grief", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Yucky", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Detest", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Poison", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Abuse", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Despise", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "Fabulous", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Excitement", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Glorious", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Cheerful", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Cherish", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Enjoy", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Delightful", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "Joyous", stim_key_association: "right"}
+      ],
+      randomize_order: true,
+      repetitions: 2
+    };
+
+      var debrief_block = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: function() {
+          // calculate D-score from https://faculty.washington.edu/agg/pdf/GB&N.JPSP.2003.pdf
+          // first find mean RT
+          var bad_black = jsPsych.data.get().filter({iat_type: 'bad-black'}).filterCustom(function(x) { return x.rt < 10000 });
+          var mean_correct_responses_bad_black = bad_black.filter({correct: true}).select('rt').mean();
+          var bad_white = jsPsych.data.get().filter({iat_type: 'bad-white'}).filterCustom(function(x) { return x.rt < 10000 });
+          var mean_correct_responses_bad_white = bad_white.filter({correct: true}).select('rt').mean();
+
+          // get overall sd
+          var sd = bad_black.join(bad_white).filter({correct: true}).select('rt').sd();
+
+          var d = (mean_correct_responses_bad_white - mean_correct_responses_bad_black) / sd;
+
+          return "<p>You're done! Below is some information about how you performed.</p>"+
+            "<p>When the pairs were BAD/WHITE and GOOD/Black, it took you an average of <strong>"+Math.floor(mean_correct_responses_bad_white)+"ms</strong> to respond.</p>"+
+            "<p>When the pairs were BAD/Black and GOOD/WHITE, it took you an average of <strong>"+Math.floor(mean_correct_responses_bad_black)+"ms</strong> to respond.</p>"+
+            "<p>Your D score, an index of performance that takes into account this difference and the overall level of variability in your responses, is <strong>"+d.toFixed(2)+"</strong></p>"+
+            "<p>For reference, the Project Implicit IAT website labels D scores above 0.15 as a slight bias, scores above 0.35 as a moderate bias, and scores above 0.65 a strong bias.</p>"
+        }
+      };
+
+    /////////* IAT TIMELINE *////////////
+
+    timeline.push(preload);
+    timeline.push(welcome_block);
+    timeline.push(category_block);
+    timeline.push(instructions_block);
+    timeline.push(trial_block);
+    timeline.push(instructions_block2);
+    timeline.push(trial_block2);
+    timeline.push(instructions_block3);
+    timeline.push(trial_block3);
+    timeline.push(instructions_block4);
+    timeline.push(trial_block4);
+    timeline.push(instructions_block5);
+    timeline.push(trial_block5);
+    timeline.push(instructions_block6);
+    timeline.push(trial_block6);
+    timeline.push(instructions_block7);
+    timeline.push(trial_block7);
+    timeline.push(debrief_block);
+
+    ////////* END OF EXPIREMENT *////////
+
+    // Recommend this object is **BEFORE** the trial to redirect for completion or display code
+    // timeline.push(pavlovia_finish);
+
+    // start the experiment
+    jsPsych.run(timeline);
+
+</script>

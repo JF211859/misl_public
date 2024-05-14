@@ -1,0 +1,22 @@
+.text-container {
+    max-width: 100%;
+    text-align: center;
+    color: black;
+}
+
+
+.text-left {
+    text-align: left;
+}
+
+.welcome-container1 {
+    max-width: 100%;
+    color: black;
+    margin: auto; 
+}
+
+.welcome-container2 {
+    width: 65%;
+    text-align: left;
+    margin: auto;
+}

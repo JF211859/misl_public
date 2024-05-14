@@ -1,0 +1,207 @@
+---
+title: "Data_Munging_CI_Compare"
+output: html_document
+---
+
+
+```{r setup}
+library(tidyverse)
+library(tidyjson)
+library(dplyr)
+library(stringr)
+library(jsonlite)
+library(here)
+
+
+myPath=dirname(rstudioapi::getActiveDocumentContext()$path)
+
+```
+
+```{r}
+
+# Get a list of all CSV files in the folder
+csv_files <- list.files(myPath, pattern = "\\.csv$", full.names = TRUE)
+
+# Function to count occurrences of 0, 1, and 2 in the 'num_attention_checks_correct' column
+count_values_in_column <- function(myPath) {
+  # Read the CSV file with headers
+  data <- read.csv(myPath, stringsAsFactors = FALSE, header = TRUE)
+ 
+  # Check if the 'num_attention_checks_correct' column exists
+  if ("num_attention_checks_correct" %in% colnames(data)) {
+    # Count occurrences of 0, 1, and 2 in the 'num_attention_checks_correct' column
+    count_0 <- sum(!is.na(data$num_attention_checks_correct) & data$num_attention_checks_correct == 0)
+    count_1 <- sum(!is.na(data$num_attention_checks_correct) & data$num_attention_checks_correct == 1)
+    count_2 <- sum(!is.na(data$num_attention_checks_correct) & data$num_attention_checks_correct == 2)
+   
+    # Return the counts
+    return(c(count_0, count_1, count_2))
+  } else {
+    # Return NA if the column doesn't exist
+    return(rep(NA, 3))
+  }
+}
+
+# Create lists to store file names for each count
+files_with_0 <- character(0)
+files_with_1 <- character(0)
+files_with_2 <- character(0)
+
+# Check each CSV file and categorize based on counts in 'num_attention_checks_correct' column
+for (file in csv_files) {
+  counts <- count_values_in_column(file)
+ 
+  if (!any(is.na(counts))) {
+    if (counts[1] > 0) {
+      files_with_0 <- c(files_with_0, basename(file))
+    }
+    if (counts[2] > 0) {
+      files_with_1 <- c(files_with_1, basename(file))
+    }
+    if (counts[3] > 0) {
+      files_with_2 <- c(files_with_2, basename(file))
+    }
+  }
+}
+
+# Print the counts and lists of files for each group
+cat("Number of files with 0 in 'num_attention_checks_correct' column:", length(files_with_0), "\n")
+cat("Number of files with 1 in 'num_attention_checks_correct' column:", length(files_with_1), "\n")
+cat("Number of files with 2 in 'num_attention_checks_correct' column:", length(files_with_2), "\n")
+
+# Print the list of files with 0 in 'num_attention_checks_correct' column
+if (length(files_with_0) > 0) {
+  cat("Files with 0 in 'num_attention_checks_correct' column:\n")
+  cat(files_with_0, sep = "\n")
+} else {
+  cat("No files with 0 in 'num_attention_checks_correct' column.\n")
+}
+
+# Print the list of files with 1 in 'num_attention_checks_correct' column
+if (length(files_with_1) > 0) {
+  cat("Files with 1 in 'num_attention_checks_correct' column:\n")
+  cat(files_with_1, sep = "\n")
+} else {
+  cat("No files with 1 in 'num_attention_checks_correct' column.\n")
+}
+```
+
+
+#Process data function: takes in a raw .csv file, processes it, and if write flag is enabled, writes clean .csv to subfolder
+```{r munging}
+processData <- function(rawData, write = TRUE) {
+
+
+trialData <- rawData%>%
+  group_by(session_id)%>%
+  dplyr::filter(str_detect(task,"sliderTrial"))%>%
+  mutate(stim_tract=substr(stimulus,18,24))%>%
+  mutate(stim_tractT=gsub("/","",stim_tract))
+  #mutate(spread_all(response))%>%select(session_id, -response,-..JSON)
+
+tract_key=rawData%>%
+  dplyr::filter(str_detect(task,"street view slide show"))%>%
+  mutate(stim_tract=substr(stimulus,25,31))%>%
+  mutate(stim_tractT=gsub("/","",stim_tract))%>%
+  select(block,stim_tractT,trial_index)%>%
+  group_by(block,stim_tractT)%>%
+  summarise(minTrial=min(trial_index))%>%
+  ungroup()%>%
+  arrange(block,minTrial)%>%
+  mutate(block_fixed=row_number())%>%
+  select(stim_tractT,block_fixed,block)
+
+matrixData1 <- rawData %>%
+  dplyr::filter(str_detect(task, "dot matrix survey1")) %>%
+  mutate(spread_all(response))%>%select(trial_index,block,session_id, `P0_Q1.wealthy`, 	`P0_Q1.safe`,	`P0_Q1.walkable`,	`P0_Q1.traditional`,	`P0_Q1.diverse`	)%>%
+  arrange(block,trial_index)%>%
+  mutate(block_fixed=row_number())%>%
+  left_join(tract_key,by=c("block_fixed","block"))%>%
+  select(-trial_index)
+
+matrixData2 <- rawData %>%
+  dplyr::filter(str_detect(task, "dot matrix survey2")) %>%
+  mutate(spread_all(response))%>%select(session_id,trial_index,block, `P0_Q1.violence`,	`P0_Q1.crime`,	`P0_Q1.drug`,	`P0_Q1.schools`,	`P0_Q1.opportunities`	)%>%
+  arrange(block,trial_index)%>%
+  mutate(block_fixed=row_number())%>%
+  left_join(tract_key,by=c("block_fixed","block"))%>%
+  select(-trial_index)
+
+matrixData3 <- rawData %>%
+  dplyr::filter(str_detect(task, "dot matrix survey3")) %>%
+  mutate(spread_all(response))%>%select(session_id,trial_index,block, `P0_Q1.movein`,	`P0_Q1.moveout`,	`P0_Q1.shopping`,	`P0_Q1.walk`,	`P0_Q1.park`,	`P0_Q1.school`)%>%
+  arrange(block,trial_index)%>%
+  mutate(block_fixed=row_number())%>%
+  left_join(tract_key,by=c("block_fixed","block"))%>%
+  select(-trial_index)
+
+matrix <- left_join(matrixData1, matrixData2, by = c("session_id","block_fixed"))%>%
+  left_join(matrixData3, by = c("session_id","block_fixed"))
+ 
+dataDemog1 <- rawData%>%
+  dplyr::filter(task=="demographics")%>%
+  dplyr::filter(trial_type=="survey-html-form")%>%
+  mutate(spread_all(response))%>%
+  select(session_id, age:zipcode)
+
+
+# dataDemog2 <- rawData%>%
+#  dplyr::filter(task=="demographics-list")%>%
+#  dplyr::filter(trial_type=="survey")%>%
+#  mutate(spread_all(response,recursive=T))%>%
+#  select(session_id, `race-ethnicity`, education, ideology, `num-moves`,`social-ladder`)  ####
+
+
+dataDemogComments <- rawData%>%
+  dplyr::filter(trial_type=="survey-text")%>%
+  mutate(spread_all(response))%>%
+  mutate(surveyComments=Q0)%>%
+  select(session_id,surveyComments)
+
+demog <-merge(dataDemog1, dataDemogComments, by="session_id")
+
+trials <-trialData %>%
+  left_join(matrix, by=c("stim_tractT","session_id"))
+  #mutate(rt=as.character(rt))
+
+dataCombo <- left_join(trials, demog, by = "session_id")
+
+if(write==TRUE){
+  print(dataCombo$session_id)
+  write.csv(dataCombo,
+    paste(myPath,"/cleaned/",
+    dataCombo$session_id[1],
+    "_cleaned.csv",
+    sep="")
+    )
+}
+
+return(dataCombo)
+
+}
+```
+
+#Map dataprocess function to multiple files in order to clean them and create single concatenated dataframe
+```{r}
+#list all files in directory that begin with rc-neighborhood and end with .csv
+
+#note that the path might need to change depending on where we save data
+files_df <-  tibble(path = file.path(myPath, files_with_2))
+
+#Now we take in all files, read the .csv, and apply the processing function. This gives us a single merged dataset
+dat_df <-
+  files_df %>%
+  mutate(
+    data = map(path, ~ read_csv(.))
+  ) %>%
+  mutate(
+    cleaned_data = map(data, ~ processData(., write = TRUE))
+  ) %>%
+  select(-data) %>%
+  unnest(cleaned_data, names_repair = "unique")
+
+
+
+#Write merged dataset
+write.csv(dat_df,paste(myPath,"merged2.csv",sep="/"))
+```

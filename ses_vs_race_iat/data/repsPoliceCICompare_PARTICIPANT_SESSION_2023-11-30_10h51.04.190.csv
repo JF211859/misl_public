@@ -1,0 +1,3 @@
+"task","trial_type","trial_index","time_elapsed","internal_node_id","subject_id","study_id","session_id","section","width","height","webaudio","browser","browser_version","mobile","os","fullscreen","vsync_rate","webcam","microphone"
+"pavlovia-init","pavlovia","0","683","0.0-0.0","","656776a7904ae00d6b91d1dd","6568a9ef36db0d5f2be75e1c","7","","","","","","","","","","",""
+"browser-check","browser-check","1","1692","0.0-1.0","","656776a7904ae00d6b91d1dd","6568a9ef36db0d5f2be75e1c","7","1600","783","true","chrome","119.0.0","false","Windows 10","true","60.19","false","true"

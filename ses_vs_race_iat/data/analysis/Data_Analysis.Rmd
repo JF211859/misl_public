@@ -1,0 +1,39 @@
+---
+title: "Data Analysis CI Compare"
+output: html_document
+---
+
+
+```{r setup}
+library(tidyverse)
+library(tidyjson)
+library(dplyr)
+library(lme4)
+library(lmerTest)
+library(sjPlot)
+
+myPath=dirname(rstudioapi::getActiveDocumentContext()$path)
+
+```
+
+```{r}
+#read merged dataset
+data=read.csv(paste(myPath,"merged2.csv",sep="/"))
+
+#match to metadata
+meta=read.csv(paste(myPath,"SVPOLICE.csv",sep="/"))
+
+meta=meta%>%group_by(StateIndex)%>%
+  sample_n(1)
+
+dat_merged=data%>%left_join(meta,by=c("stim_tractT.y"="StateIndex"))
+
+
+```
+
+```{r}
+testMod=lmer((standardized_response-4)~povCond+(1|session_id),data=dat_merged);summary(testMod)
+
+testMod=lmer(scale(standardized_response)~povCond+(povCond|session_id),data=dat_merged);summary(testMod)
+```
+

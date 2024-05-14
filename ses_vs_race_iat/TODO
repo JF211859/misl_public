@@ -1,0 +1,42 @@
+Implementation:
+
+
+40 classification images to choose from 20 community 20 traditional instead of ori inv
+
+set of continious choices between two pictures instead of binary choices
+
+4 blocks per condition
+
+1 condition:
+
+shuffle the 20 pairs together
+
+divide 5 per block
+
+each of the 5 pairs have a set of continuous choices
+
+randomize what side they're on
+
+block:
+
+2 conditions
+slideshow (4 per condition)
+couple generic survey questions where you choose from a distinct list dot matrix (Slideshow Survey) (1 per block)
+continuous choice questions from the officers (Officer Comparison) (5 per block)
+Allocation of officer pairs to blocks is the same across conditions
+
+Place holders for questions and number of questions
+
+add another task for survey questions
+
+------- 8/14/2023 ----------
+
+Implement images under prompt like the qualtrics survey
+
+Just a slider dont need a dot matrix  Similar to qualtrics
+
+make sure random assignemtnet
+
+5 always means 1 to community but random look when taking the survey
+
+attention check wait for slack from Nick
